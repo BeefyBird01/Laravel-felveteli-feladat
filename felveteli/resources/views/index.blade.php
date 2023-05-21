@@ -3,7 +3,7 @@
 
 @section('content')
 @if (count($companies) === 0)
-    <p class="p">No data found</p>    
+    <p class="p">No companies found</p>    
 @else
     <div class="table-responsive">
         <table class="table">
@@ -36,9 +36,9 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="/companies/create">
-            <button type="button" class="btn btn-success m-2">Add</button>
-        </a>
     </div>
 @endif
+<a href="/companies/create">
+    <button type="button" class="btn btn-success m-2">Add</button>
+</a>
 @endsection

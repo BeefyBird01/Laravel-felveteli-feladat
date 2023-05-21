@@ -30,7 +30,6 @@ class UserFactory extends Factory
             dump('Password: ' . $element['password']);
             dump('');
 
-
         return $element;
     }
 

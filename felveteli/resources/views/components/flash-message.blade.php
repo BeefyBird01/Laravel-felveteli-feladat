@@ -1,6 +1,6 @@
 @if(session('alert'))
     
-    <div class="container">
+    <div class="container fixed-top">
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="alert alert-success">

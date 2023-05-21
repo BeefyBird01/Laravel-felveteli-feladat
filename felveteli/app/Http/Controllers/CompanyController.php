@@ -47,4 +47,29 @@ class CompanyController extends Controller
         session()->flash('alert', 'Company created.');
         return redirect('/')->with('alert', 'Company created');
     }
+
+    //delete company
+    public function delete(Company $company){
+        $company->delete();
+        return redirect('/')->with('alert','Deleted Succesfully');
+    }
+
+    //edit company
+    public function edit(Company $company){
+        return view('edit', ['company' => $company]);
+    }
+
+    public function update(Request $request, Company $company){
+        $formFields = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'taxNumber' =>'required',
+            'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'        
+        ]);
+
+        $company->update($formFields);
+
+
+        return redirect('/')->with('alert', 'Company updated');
+    }
 }

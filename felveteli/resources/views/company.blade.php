@@ -34,12 +34,14 @@
                             {{$company->email}}
                         </td>
                         <td>
-                            <a href="/companies/{{$company->id}}/edit">
-                                <button type="button" class="btn btn-primary m-2">Edit</button>
-                            </a>
-                            <a href="/companies/{{$company->id}}/delete">
-                                <button type="button" class="btn btn-primary m-2">Delete</button>
-                            </a>
+                            <a href="/companies/{{$company->id}}/edit">                      
+                                <button type="submit" class="btn btn-primary m-2">Edit</button>
+                            </a>  
+                            <form action="/companies/{{$company->id}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger m-2">Delete</button>
+                            </form>
                         </td>
                     </tr>
             </tbody>
