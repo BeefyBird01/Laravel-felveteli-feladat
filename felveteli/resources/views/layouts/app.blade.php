@@ -33,6 +33,7 @@
     
 </head>
 <body>
+    @include('components.flash-message')
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
@@ -41,7 +42,7 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" src="resources/dashmin-1.0.0/img/user.jpg" alt="" style="width: 40px; height: 40px;">
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
@@ -56,7 +57,7 @@
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="/companies" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Future Function</a>  
+                <a href="/" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Future Function</a>  
             </div>
         </nav>
     </div>
@@ -125,8 +126,9 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="resources/js/app.js"></script>
 </body>
 </html>

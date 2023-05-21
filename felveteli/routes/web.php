@@ -17,10 +17,15 @@ use App\Http\Controllers\CompanyController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [CompanyController::class, 'index'])->name('companies');
+
+Route::get('/companies/create',[CompanyController::class,'create']);
+
+//store new company data
+Route::post('/companies',[CompanyController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/companies',[CompanyController::class, 'index'])->name('companies');
-
 Route::get('/companies/{company}',[CompanyController::class, 'show']);
+
+

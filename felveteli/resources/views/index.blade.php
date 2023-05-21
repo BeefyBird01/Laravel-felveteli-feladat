@@ -35,8 +35,10 @@
                     </tr>
                 @endforeach
             </tbody>
-        
         </table>
+        <a href="/companies/create">
+            <button type="button" class="btn btn-success m-2">Add</button>
+        </a>
     </div>
 @endif
 @endsection
