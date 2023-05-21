@@ -28,7 +28,9 @@
                             
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary m-2">Details</button>
+                            <a href="/companies/{{$company->id}}">
+                                <button type="button" class="btn btn-primary m-2">Details</button>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

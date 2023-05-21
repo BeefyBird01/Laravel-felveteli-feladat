@@ -20,4 +20,11 @@ class CompanyController extends Controller
             ]);
         
     }
+
+    //show single
+    public function show(Company $company){
+        return view('company',[
+            'company' => $company
+        ]);
+    }
 }
