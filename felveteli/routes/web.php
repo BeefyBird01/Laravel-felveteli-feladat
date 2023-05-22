@@ -17,9 +17,31 @@ use App\Http\Controllers\CompanyController;
 
 Auth::routes();
 
+//show edit form
+Route::get('/companies/{company}/edit',[CompanyController::class,'edit']);
+
+//show create form
+Route::get('/companies/create',[CompanyController::class,'create']);
+
+//show single company
+Route::get('/companies/{company}',[CompanyController::class, 'show']);
+
+//update existing company
+Route::put('/companies/{company}',[CompanyController::class,'update']);
+
+//delete existing company
+Route::delete('/companies/{company}',[CompanyController::class,'delete']);
+
+//create new company in database
+Route::post('/companies',[CompanyController::class, 'store']);
+
+//show index
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//show index
 Route::get('/', [CompanyController::class, 'index'])->name('companies');
 
-Route::get('/companies/create',[CompanyController::class,'create']);
+
 
 
 //store new company data
@@ -27,18 +49,18 @@ Route::get('/companies/create',[CompanyController::class,'create']);
 
 
 
-Route::get('/companies/{company}/edit',[CompanyController::class,'edit']);
 
-Route::post('/companies',[CompanyController::class, 'store']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 
 
 //edit submit to update
-Route::put('/companies/{company}',[CompanyController::class,'update']);
 
-Route::delete('/companies/{company}',[CompanyController::class,'delete']);
 
-Route::get('/companies/{company}',[CompanyController::class, 'show']);
+
+
+
 
 

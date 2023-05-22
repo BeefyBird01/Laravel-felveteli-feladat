@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Factory as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Company>
@@ -19,7 +20,7 @@ class CompanyFactory extends Factory
         return [
             'name' => fake()->company(),
             'email' => fake()->unique()->safeEmail(),
-            'taxNumber' => fake()->creditCardNumber(),
+            'taxNumber' => $this->faker->unique()->randomNumber($nbDigits = 9),
             'phoneNumber' =>fake()->phoneNumber(),
         ];
     }

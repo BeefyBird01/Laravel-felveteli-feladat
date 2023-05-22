@@ -22,7 +22,7 @@ class CompanyController extends Controller
         
     }
 
-    //show single
+    //show single company
     public function show(Company $company){
         return view('company',[
             'company' => $company
@@ -39,12 +39,11 @@ class CompanyController extends Controller
         $formFields = $request->validate([
             'name' => ['required',Rule::unique('companies','name')],
             'email' => ['required', 'email'],
-            'taxNumber' =>'required',
+            'taxNumber' =>['required','size:9'],
             'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'            
         ]);
 
         Company::create($formFields);
-        session()->flash('alert', 'Company created.');
         return redirect('/')->with('alert', 'Company created');
     }
 
@@ -59,11 +58,12 @@ class CompanyController extends Controller
         return view('edit', ['company' => $company]);
     }
 
+    //update existing company
     public function update(Request $request, Company $company){
         $formFields = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'taxNumber' =>'required',
+            'taxNumber' =>['required','size:9'],
             'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'        
         ]);
 
