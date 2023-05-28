@@ -3,6 +3,9 @@
 ### Indítás előtt futtatandó parancsok
 
 ```
+composer install
+npm install
+php artisan key:generate
 php artisan migrate
 php artisan db:seed
 (ha cégekkel is fel akarjuk tölteni: php artisan db:seed --class=CompanySeeder)
