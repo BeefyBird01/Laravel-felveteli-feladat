@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','Companies')
 
 @section('content')
 @if (count($companies) === 0)
@@ -29,6 +30,7 @@
                         </td>
                         <td>
                             <a href="/companies/{{$company->id}}">
+                                <a href="{{route('show', ['company' => $company->id])}}">
                                 <button type="button" class="btn btn-primary m-2">Details</button>
                             </a>
                         </td>
@@ -38,7 +40,7 @@
         </table>
     </div>
 @endif
-<a href="/companies/create">
+<a href="{{route('create')}}">
     <button type="button" class="btn btn-success m-2">Add</button>
 </a>
 @endsection

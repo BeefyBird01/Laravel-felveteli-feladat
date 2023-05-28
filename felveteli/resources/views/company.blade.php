@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{$company->name}}
+@endsection
+
 @section('content')
     <div class="table-responsive">
         <table class="table">
@@ -34,13 +38,13 @@
                             {{$company->email}}
                         </td>
                         <td>
-                            <a href="/companies/{{$company->id}}/edit">                      
+                            <a href="{{route('edit', ['company' => $company->id])}}">                      
                                 <button type="submit" class="btn btn-primary m-2">Edit</button>
                             </a>  
-                            <form action="/companies/{{$company->id}}" method="post">
+                            <form action="{{route('delete', ['company' => $company->id])}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger m-2">Delete</button>
+                                <button type="submit" class="btn btn-danger m-2" onclick="return confirmDelete()">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -48,4 +52,9 @@
         
         </table>
     </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this element?");
+        }
+    </script>
 @endsection

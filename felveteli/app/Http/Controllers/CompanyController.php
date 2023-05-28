@@ -16,16 +16,28 @@ class CompanyController extends Controller
     }
     //show all companies
     public function index(){        
+        try{
+            $companies = Company::all();
+        }
+        catch(\Exception $exception){
+            return view('errors.error', ['errorMessage' => 'Could not load data from the database']);
+        }
             return view('index',[
-                'companies' => Company::all(),
+                'companies' => $companies
             ]);
         
     }
 
     //show single company
-    public function show(Company $company){
+    public function show($companyId){
+        try{
+            $result = Company::findOrFail($companyId);
+        }
+        catch(\Exception $exception){
+            return view('errors.error', ['errorMessage' => 'Company does not exist']);
+        }
         return view('company',[
-            'company' => $company
+            'company' => $result
         ]);
     }
 
@@ -42,15 +54,27 @@ class CompanyController extends Controller
             'taxNumber' =>['required','size:9'],
             'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'            
         ]);
+        try{
+            Company::create($formFields);
+        }
+        catch(\Exception $exception){
+            return redirect()->route('companies')->with(['alert' => 'Failed to create company','type' =>'failed']);
+        }
 
-        Company::create($formFields);
-        return redirect('/')->with('alert', 'Company created');
+        
+        return redirect()->route('companies')->with('alert', 'Company created');
     }
 
     //delete company
     public function delete(Company $company){
-        $company->delete();
-        return redirect('/')->with('alert','Deleted Succesfully');
+        try{
+            $company->delete();
+        }
+        catch(\Exception $exception){
+            return redirect()->route('companies')->with(['alert' => 'Failed to delete company','type' =>'failed']);
+        }
+        
+        return redirect()->route('companies')->with('alert','Deleted Succesfully');
     }
 
     //edit company
@@ -66,10 +90,12 @@ class CompanyController extends Controller
             'taxNumber' =>['required','size:9'],
             'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'        
         ]);
-
-        $company->update($formFields);
-
-
-        return redirect('/')->with('alert', 'Company updated');
+        try{
+            $company->update($formFields);
+        }
+        catch(\Exception $exception){
+            return redirect()->route('companies')->with(['alert' => 'Failed to update company','type' =>'failed']);
+        }
+        return redirect()->route('companies')->with(['alert' => 'Company updated','type' =>'success']);
     }
 }

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Felvételi') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Favicon -->
     <link href="dashmin-1.0.0/img/favicon.ico" rel="icon">
@@ -30,10 +30,13 @@
 
     <!-- Template Stylesheet -->
     <link href={{mix('resources/dashmin-1.0.0/css/style.css')}} rel="stylesheet">
+
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
 <body>
-    @include('components.flash-message')
+    
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
@@ -117,7 +120,6 @@
     </div>
     
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -130,5 +132,7 @@
 
     <!-- Template Javascript -->
     <script src="resources/js/app.js"></script>
+    <!-- Flash message -->
+    @include('components.flash-message')
 </body>
 </html>
